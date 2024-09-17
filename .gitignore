@@ -1,0 +1,39 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Logs
+*.log
+*.tmp
+
+# IDE configs
+.vscode/
+.idea/
+*.swp
+
+# Allure reports
+allure-results/
+allure-report/
+
+# Coverage reports
+.coverage
+htmlcov/
+coverage.xml
+
+# Test results
+test-results/
+reports/
+
+# Environment variables
+.env
+*.env
+
+# pyinstaller
+dist/
+build/
+*.spec
