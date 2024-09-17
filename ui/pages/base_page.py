@@ -1,5 +1,5 @@
 import allure
-from playwright.sync_api import Page
+from playwright.sync_api import Page, expect
 from playwright.sync_api import Error as PWError
 
 
@@ -51,4 +51,9 @@ class BasePage:
             return True
         except PWError:
             return False
+
+    @allure.step("Comparing URL")
+    def compare_url_to(self, expected_url: str):
+        expect(self.page).to_have_url(expected_url)
+
 

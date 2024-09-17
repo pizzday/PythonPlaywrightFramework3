@@ -8,6 +8,7 @@ class LoginPage(BasePage):
     USERNAME_INPUT = "//input[@name='username']"
     PASSWORD_INPUT = "//input[@name='password']"
     LOGIN_SUBMIT_BUTTON = "//button[@type='submit']"
+    INVALID_CREDENTIALS_ERROR_TITLE = "//p[text()='Invalid credentials']"
 
     def __init__(self, page: Page):
         super().__init__(page)
@@ -17,5 +18,6 @@ class LoginPage(BasePage):
         self.fill(self.PASSWORD_INPUT, password)
         self.click(self.LOGIN_SUBMIT_BUTTON)
 
-
+    def is_invalid_credentials_title_presented(self):
+        assert self.is_element_present(self.INVALID_CREDENTIALS_ERROR_TITLE)
 
