@@ -1,0 +1,11 @@
+version: '1'
+
+services:
+  regression:
+    image: python:3.12.4-slim-bullseye
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/app
+    command: /bin/sh -c "pytest -sv --alluredir=./allure-results"
