@@ -29,10 +29,7 @@ RUN curl -o allure.tgz -L https://github.com/allure-framework/allure2/releases/d
 
 # Копируем код проекта в контейнер
 WORKDIR /app
-COPY . .
 
 ENV DOCKER_CONTAINER=true
 
-# Команда для запуска тестов с allure
-CMD ["pytest", "-v", "-s", "--alluredir=./allure-results"]
 

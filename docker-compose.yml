@@ -1,4 +1,4 @@
-version: '1'
+version: '3.7'
 
 services:
   regression:
@@ -9,3 +9,4 @@ services:
     volumes:
       - ./:/app
     command: /bin/sh -c "pytest -sv --alluredir=./allure-results"
+    working_dir: /app
