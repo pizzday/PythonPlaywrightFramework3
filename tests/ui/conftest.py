@@ -8,7 +8,7 @@ from playwright.sync_api import sync_playwright
 @pytest.fixture(scope='session')
 def browser():
     with sync_playwright() as play:
-        if os.getenv('DOCKER_RUN') or os.getenv('GITHUB_RUN'):
+        if os.getenv('DOCKER_CONTAINER') or os.getenv('GITHUB_RUN'):
             browser = play.chromium.launch(headless=True, args=['--no-sandbox'])
         else:
             browser = play.chromium.launch(headless=False)
