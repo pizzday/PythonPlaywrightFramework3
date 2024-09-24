@@ -1,4 +1,4 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Tue Sep 24 14:04:56 UTC 2024","Tue Sep 24 14:04:59 UTC 2024","3362","tests.ui.e2e_tests","test_login","TestLogin","","","Login user with invalid username",""
-"passed","Tue Sep 24 14:04:49 UTC 2024","Tue Sep 24 14:04:52 UTC 2024","3158","tests.ui.e2e_tests","test_login","TestLogin","","","Login valid user",""
-"passed","Tue Sep 24 14:04:52 UTC 2024","Tue Sep 24 14:04:56 UTC 2024","3761","tests.ui.e2e_tests","test_login","TestLogin","","","Login user with invalid password",""
+"passed","Tue Sep 24 14:28:49 UTC 2024","Tue Sep 24 14:28:55 UTC 2024","5972","tests.ui.e2e_tests","test_login","TestLogin","","","Login user with invalid password",""
+"passed","Tue Sep 24 14:28:55 UTC 2024","Tue Sep 24 14:29:00 UTC 2024","4980","tests.ui.e2e_tests","test_login","TestLogin","","","Login user with invalid username",""
+"passed","Tue Sep 24 14:28:45 UTC 2024","Tue Sep 24 14:28:49 UTC 2024","4051","tests.ui.e2e_tests","test_login","TestLogin","","","Login valid user",""
