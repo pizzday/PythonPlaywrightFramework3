@@ -2,7 +2,7 @@
 FROM python:3.12.4-slim-bullseye
 
 # Устанавливаем системные зависимости для Playwright и других инструментов
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y openjdk-11-jdk && apt-get install -y --no-install-recommends \
     curl gcc g++ libffi-dev libssl-dev make \
     chromium ca-certificates fonts-liberation libnss3 \
     libatk1.0-0 libatk-bridge2.0-0 libdrm2 libxcomposite1 libxdamage1 \
