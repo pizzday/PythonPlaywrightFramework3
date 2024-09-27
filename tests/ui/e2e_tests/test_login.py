@@ -37,7 +37,16 @@ class TestLogin:
         assert 1 == 2
         login_page.compare_url_to(LOGIN_URL)
         login_page.is_invalid_credentials_title_presented()
-
         print("main branch")
+        print("test-feature branch")
+
+    @allure.title("Demo test")
+    def test_demo(self, page):
+        login_page = LoginPage(page)
+        login_page.go_to_url(BASE_URL+"/auth/login")
+        login_page.login("123", "admin123")
+        login_page.compare_url_to(LOGIN_URL)
+        login_page.is_invalid_credentials_title_presented()
+
 
 
