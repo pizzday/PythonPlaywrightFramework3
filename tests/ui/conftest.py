@@ -9,7 +9,7 @@ from playwright.sync_api import sync_playwright
 def browser():
     with sync_playwright() as play:
         if os.getenv('DOCKER_CONTAINER') or os.getenv('GITHUB_RUN'):
-            browser = play.chromium.launch(headless=True, args=['--no-sandbox'])
+            browser = play.chromium.launch(headless=True, args=['--no-sandbox --start-maximized'])
         else:
             browser = play.chromium.launch(headless=False)
 
@@ -19,7 +19,7 @@ def browser():
 
 @pytest.fixture(scope="function")
 def page(browser):
-    context = browser.new_context()
+    context = browser.new_context(no_viewport=True)
     page = context.new_page()
     yield page
     context.close()
