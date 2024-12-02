@@ -9,13 +9,10 @@ from ui.pages.login_page import LoginPage
 
 
 @allure.feature("Login")
-class TestLogin:
+class TestAdminModule:
     @allure.title("Add valid admin")
-    def test_add_valid_admin(self, page):
-        login_page = LoginPage(page)
-        login_page.go_to_url(LOGIN_URL)
-        login_page.login("Admin", "admin123")
-        login_page.compare_url_to(BASE_URL + "/dashboard/index")
+    def test_add_valid_admin(self, page, admin_login):
+
 
         admin_module_page = AdminModulePage(page)
         admin_module_page.left_navbar.click_admin_module_link()

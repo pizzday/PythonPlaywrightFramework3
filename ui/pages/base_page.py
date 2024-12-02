@@ -36,6 +36,17 @@ class BasePage:
     def select_option(self, locator: str, option: str):
         self.page.select_option(locator, option)
 
+    @allure.step('Sending files with paths - {file_paths} by using locator - {locator}')
+    def set_input_files(self, locator: str, file_paths):
+        self.page.set_input_files(locator, file_paths)
+
+    @allure.step('Sending files with paths - {file_paths} by using locator - {locator}')
+    def set_input_files_for_dynamic_locator(self, locator: str, file_paths):
+        with self.page.expect_file_chooser() as fc_info:
+            self.page.click(locator)
+        file_chooser = fc_info.value
+        file_chooser.set_files(file_paths)
+
     @allure.step('Is element - {locator} present')
     def is_element_present(self, locator: str) -> bool:
         try:
