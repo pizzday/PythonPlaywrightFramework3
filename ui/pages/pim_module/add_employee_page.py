@@ -2,6 +2,7 @@ import time
 
 from playwright.sync_api import Page
 
+from ui.components.left_navbar import LeftNavbar
 from ui.pages.base_page import BasePage
 
 
@@ -22,6 +23,7 @@ class AddEmployeePage(BasePage):
 
     def __init__(self, page: Page):
         super().__init__(page)
+        self.left_navbar = LeftNavbar(page)
 
     def add_employee(self, create_details, first_name, middle_name, last_name, employee_id, username, password1, password2, status="Enabled", image_path=None):
         if image_path:

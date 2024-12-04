@@ -47,6 +47,23 @@ class BasePage:
         file_chooser = fc_info.value
         file_chooser.set_files(file_paths)
 
+    @allure.step('Looking for elements with locator - {locator}')
+    def find_all_elements_with_locator(self, locator: str):
+        self.page.wait_for_selector(locator)
+        return self.page.locator(locator).all()
+
+    @allure.step('Checking if locator - {locator} has class - {class_name}')
+    def if_locator_has_class(self, locator: str, class_name: str):
+        if self.page.locator(locator).get_attribute("class") == class_name:
+            return True
+        else:
+            return False
+
+    @allure.step('Expecting locator - {locator} to have text - {text}')
+    def should_have_text(self, locator: str, text: str):
+        element = self.page.locator(locator)
+        expect(element).to_have_text(text)
+
     @allure.step('Is element - {locator} present')
     def is_element_present(self, locator: str) -> bool:
         try:
@@ -64,7 +81,8 @@ class BasePage:
             return False
 
     @allure.step("Comparing URL")
-    def compare_url_to(self, expected_url: str):
+    def compare_url_to(self, expected_url):
+        self.page.wait_for_url(expected_url)
         expect(self.page).to_have_url(expected_url)
 
 

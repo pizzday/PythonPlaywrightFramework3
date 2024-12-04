@@ -1,6 +1,6 @@
 import allure
 
-from config.settings import BASE_URL, LOGIN_URL
+from config.settings import BASE_URL, LOGIN_URL, ADMIN_USERNAME, ADMIN_PASSWORD
 from ui.pages.login_page import LoginPage
 
 
@@ -10,14 +10,14 @@ class TestLogin:
     def test_valid_user_login(self, page):
         login_page = LoginPage(page)
         login_page.go_to_url(LOGIN_URL)
-        login_page.login("Admin", "admin123")
+        login_page.login(ADMIN_USERNAME, ADMIN_PASSWORD)
         login_page.compare_url_to(BASE_URL + "/dashboard/index")
 
     @allure.title("Login user with invalid password")
     def test_invalid_password_login(self, page):
         login_page = LoginPage(page)
         login_page.go_to_url(LOGIN_URL)
-        login_page.login("Admin", "123")
+        login_page.login(ADMIN_USERNAME, "123")
         login_page.compare_url_to(LOGIN_URL)
         login_page.is_invalid_credentials_title_presented()
 
@@ -25,7 +25,7 @@ class TestLogin:
     def test_invalid_username_login(self, page):
         login_page = LoginPage(page)
         login_page.go_to_url(BASE_URL+"/auth/login")
-        login_page.login("123", "admin123")
+        login_page.login("123", ADMIN_PASSWORD)
         login_page.compare_url_to(LOGIN_URL)
         login_page.is_invalid_credentials_title_presented()
 
@@ -33,7 +33,7 @@ class TestLogin:
     def test_panosik_fail(self, page):
         login_page = LoginPage(page)
         login_page.go_to_url(BASE_URL+"/auth/login")
-        login_page.login("123", "admin123")
+        login_page.login("123", ADMIN_PASSWORD)
         assert 1 == 2
         login_page.compare_url_to(LOGIN_URL)
         login_page.is_invalid_credentials_title_presented()
@@ -44,7 +44,7 @@ class TestLogin:
     def test_demo(self, page):
         login_page = LoginPage(page)
         login_page.go_to_url(BASE_URL+"/auth/login")
-        login_page.login("123", "admin123")
+        login_page.login("123", ADMIN_PASSWORD)
         login_page.compare_url_to(LOGIN_URL)
         login_page.is_invalid_credentials_title_presented()
 
@@ -52,7 +52,7 @@ class TestLogin:
     def test_demo_02(self, page):
         login_page = LoginPage(page)
         login_page.go_to_url(BASE_URL+"/auth/login")
-        login_page.login("123", "admin123")
+        login_page.login("123", ADMIN_PASSWORD)
         login_page.compare_url_to(LOGIN_URL)
 
 

@@ -12,12 +12,14 @@ class LeftNavbar(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
 
-    def click_home_page_link(self):
+    def visit_home_page(self):
         self.click(self.HOME_PAGE_LINK)
 
-    def click_admin_module_link(self):
+    def visit_admin_module(self):
         self.click(self.ADMIN_MODULE_LINK)
+        self.compare_url_to("https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewSystemUsers")
 
-    def click_pim_module_link(self):
+    def visit_pim_module(self):
         self.click(self.PIM_MODULE_LINK)
+        self.compare_url_to("https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewEmployeeList")
 

@@ -5,6 +5,9 @@ LOGIN_URL = BASE_URL+"/auth/login"
 DEFAULT_TIMEOUT = 20000
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+ADMIN_USERNAME = "Admin"
+ADMIN_PASSWORD = "admin123"
+
 FIRST_NAME = "GamnoName"
 MIDDLE_NAME = "GamnoMiddleName"
 LAST_NAME = "GamnoLastName"
