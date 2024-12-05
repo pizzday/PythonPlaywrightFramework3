@@ -17,6 +17,9 @@ class TestAdminModule:
 
         add_admin_page = AddAdminPage(page)
         add_admin_page.add_user("Admin", "Enabled", FIRST_NAME, USERNAME, PASSWORD, PASSWORD)
+        add_admin_page.compare_url_to("https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewSystemUsers")
+
+        admin_module_page.search_user_by_username(USERNAME)
 
 
 

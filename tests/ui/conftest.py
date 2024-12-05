@@ -9,6 +9,7 @@ from playwright.sync_api import sync_playwright
 from config.settings import *
 from ui.pages.pim_module.add_employee_page import AddEmployeePage
 from ui.pages.login_page import LoginPage
+from ui.pages.pim_module.employee_details.personal_details_page import PersonalDetailsPage
 from ui.pages.pim_module.pim_module_page import PimModulePage
 
 
@@ -18,7 +19,9 @@ def browser():
         if os.getenv('DOCKER_CONTAINER') or os.getenv('GITHUB_RUN'):
             browser = play.chromium.launch(headless=True, args=['--no-sandbox'])
         else:
-            browser = play.chromium.launch(headless=False, slow_mo=500)
+            browser = play.chromium.launch(headless=False
+                                           #, slow_mo=500
+                                           )
 
         yield browser
         browser.close()
@@ -58,7 +61,8 @@ def created_test_user_admin(page):
                                    "Enabled")
     add_employee_page.compare_url_to(re.compile(
         r"https://opensource-demo\.orangehrmlive\.com/web/index\.php/pim/viewPersonalDetails/empNumber/.*"))
-    yield
+    personal_details_page = PersonalDetailsPage(page)
+    yield personal_details_page.get_emp_number()
     pim_module_page = PimModulePage(page)
     pim_module_page.left_navbar.visit_pim_module()
     pim_module_page.search_employee_by_id(EMPLOYEE_ID)
@@ -77,7 +81,8 @@ def created_test_user_notadmin(page):
                                    TEST_IMAGE_PATH)
     add_employee_page.compare_url_to(re.compile(
         r"https://opensource-demo\.orangehrmlive\.com/web/index\.php/pim/viewPersonalDetails/empNumber/.*"))
-    yield
+    personal_details_page = PersonalDetailsPage(page)
+    yield personal_details_page.get_emp_number()
     pim_module_page = PimModulePage(page)
     pim_module_page.go_to_url(PIM_EMPLOYEE_LIST_URL)
     pim_module_page.search_employee_by_id(EMPLOYEE_ID)
