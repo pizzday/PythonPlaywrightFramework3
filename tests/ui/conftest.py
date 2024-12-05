@@ -43,7 +43,7 @@ def admin_login(page):
     login_page.compare_url_to(BASE_URL + "/dashboard/index")
 
 
-
+# def created_test_user()
 
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)

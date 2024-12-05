@@ -16,7 +16,22 @@ class TestPimModule:
         pim_module_page.click_add_employee_button()
 
         add_employee_page = AddEmployeePage(page)
+        employee_data = {
+            "first_name": "John",
+            "middle_name": "A.",
+            "last_name": "Doe",
+            "employee_id": "12345",
+            "create_details": True,
+            "username": "johndoe",
+            "password1": "securePassword",
+            "password2": "securePassword",
+            "status": "Enabled",
+            "image_path": "/path/to/image.jpg",
+        }
+
         add_employee_page.add_employee(True, FIRST_NAME, MIDDLE_NAME, LAST_NAME, EMPLOYEE_ID, USERNAME, PASSWORD, PASSWORD, image_path=TEST_IMAGE_PATH)
+
+
         add_employee_page.compare_url_to(re.compile(
             r"https://opensource-demo\.orangehrmlive\.com/web/index\.php/pim/viewPersonalDetails/empNumber/.*"))
         try:
