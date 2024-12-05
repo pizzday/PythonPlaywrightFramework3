@@ -17,3 +17,6 @@ PASSWORD = "qwerty123"
 TEST_IMAGES_DIR = BASE_DIR/'helpers'/'data'/'test_images'
 TEST_IMAGE_PATH = TEST_IMAGES_DIR/'valid_test_image.jpg'
 
+PIM_ADD_EMPLOYEE_URL = "https://opensource-demo.orangehrmlive.com/web/index.php/pim/addEmployee"
+PIM_EMPLOYEE_LIST_URL = "https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewEmployeeList"
+

@@ -6,8 +6,7 @@ import allure
 import pytest
 from playwright.sync_api import sync_playwright
 
-from config.settings import LOGIN_URL, BASE_URL, DEFAULT_TIMEOUT, ADMIN_USERNAME, ADMIN_PASSWORD, FIRST_NAME, \
-    MIDDLE_NAME, LAST_NAME, EMPLOYEE_ID, USERNAME, PASSWORD, TEST_IMAGE_PATH
+from config.settings import *
 from ui.pages.pim_module.add_employee_page import AddEmployeePage
 from ui.pages.login_page import LoginPage
 from ui.pages.pim_module.pim_module_page import PimModulePage
@@ -19,7 +18,7 @@ def browser():
         if os.getenv('DOCKER_CONTAINER') or os.getenv('GITHUB_RUN'):
             browser = play.chromium.launch(headless=True, args=['--no-sandbox'])
         else:
-            browser = play.chromium.launch(headless=False)
+            browser = play.chromium.launch(headless=False, slow_mo=500)
 
         yield browser
         browser.close()
@@ -43,7 +42,46 @@ def admin_login(page):
     login_page.compare_url_to(BASE_URL + "/dashboard/index")
 
 
-# def created_test_user()
+@pytest.fixture(scope="function")
+def created_test_user_admin(page):
+    add_employee_page = AddEmployeePage(page)
+    add_employee_page.go_to_url(PIM_ADD_EMPLOYEE_URL)
+    add_employee_page.add_employee(FIRST_NAME,
+                                   MIDDLE_NAME,
+                                   LAST_NAME,
+                                   EMPLOYEE_ID,
+                                   TEST_IMAGE_PATH,
+                                   True,
+                                   USERNAME,
+                                   PASSWORD,
+                                   PASSWORD,
+                                   "Enabled")
+    add_employee_page.compare_url_to(re.compile(
+        r"https://opensource-demo\.orangehrmlive\.com/web/index\.php/pim/viewPersonalDetails/empNumber/.*"))
+    yield
+    pim_module_page = PimModulePage(page)
+    pim_module_page.left_navbar.visit_pim_module()
+    pim_module_page.search_employee_by_id(EMPLOYEE_ID)
+    pim_module_page.delete_user_after_searching()
+
+
+@pytest.fixture(scope="function")
+def created_test_user_notadmin(page):
+
+    add_employee_page = AddEmployeePage(page)
+    add_employee_page.go_to_url(PIM_ADD_EMPLOYEE_URL)
+    add_employee_page.add_employee(FIRST_NAME,
+                                   MIDDLE_NAME,
+                                   LAST_NAME,
+                                   EMPLOYEE_ID,
+                                   TEST_IMAGE_PATH)
+    add_employee_page.compare_url_to(re.compile(
+        r"https://opensource-demo\.orangehrmlive\.com/web/index\.php/pim/viewPersonalDetails/empNumber/.*"))
+    yield
+    pim_module_page = PimModulePage(page)
+    pim_module_page.go_to_url(PIM_EMPLOYEE_LIST_URL)
+    pim_module_page.search_employee_by_id(EMPLOYEE_ID)
+    pim_module_page.delete_user_after_searching()
 
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
