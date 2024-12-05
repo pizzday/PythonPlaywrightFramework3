@@ -33,6 +33,6 @@ class TestPimModule:
             pim_module_page.left_navbar.visit_pim_module()
             pim_module_page.search_employee_by_id(EMPLOYEE_ID)
         finally:
-            # pim_module_page.delete_user_after_searching()
-            print(123)
+            pim_module_page.delete_user_after_searching()
+
 
