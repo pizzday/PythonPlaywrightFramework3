@@ -16,3 +16,4 @@ USERNAME = "JoePeach"
 PASSWORD = "qwerty123"
 TEST_IMAGES_DIR = BASE_DIR/'helpers'/'data'/'test_images'
 TEST_IMAGE_PATH = TEST_IMAGES_DIR/'valid_test_image.jpg'
+

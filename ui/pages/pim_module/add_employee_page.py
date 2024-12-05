@@ -25,22 +25,23 @@ class AddEmployeePage(BasePage):
         super().__init__(page)
         self.left_navbar = LeftNavbar(page)
 
-    def add_employee(self, create_details, first_name, middle_name, last_name, employee_id, username, password1, password2, status="Enabled", image_path=None):
+    def add_employee(self, employee_data: dict):
+        image_path = employee_data.get("image_path")
         if image_path:
             self.set_input_files_for_dynamic_locator(self.ADD_IMAGE_BUTTON, image_path)
 
-        self.fill(self.FIRST_NAME_INPUT, first_name)
-        self.fill(self.MIDDLE_NAME_INPUT, middle_name)
-        self.fill(self.LAST_NAME_INPUT, last_name)
-        self.fill(self.EMPLOYEE_ID_INPUT, employee_id)
+        self.fill(self.FIRST_NAME_INPUT, employee_data.get("first_name"))
+        self.fill(self.MIDDLE_NAME_INPUT, employee_data.get("middle_name"))
+        self.fill(self.LAST_NAME_INPUT, employee_data.get("last_name"))
+        self.fill(self.EMPLOYEE_ID_INPUT, employee_data.get("employee_id"))
 
-        if create_details:
+        if employee_data.get("create_details") is True:
             self.click(self.DETAILS_SWITCH)
-            self.fill(self.USERNAME_INPUT, username)
-            if status is not "Enabled":
+            self.fill(self.USERNAME_INPUT, employee_data.get("username"))
+            if employee_data.get("status") is not "Enabled":
                 self.click(self.DISABLED_STATUS_CHECKBOX)
-            self.fill(self.PASSWORD1_INPUT, password1)
-            self.fill(self.PASSWORD2_INPUT, password2)
+            self.fill(self.PASSWORD1_INPUT, employee_data.get("password1"))
+            self.fill(self.PASSWORD2_INPUT, employee_data.get("password2"))
 
         self.click(self.SAVE_BUTTON)
 

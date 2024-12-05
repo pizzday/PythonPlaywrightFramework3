@@ -10,13 +10,14 @@ class PimModulePage(BasePage):
 
     ADD_EMPLOYEE_BUTTON = "//*[@id='app']/div[1]/div[2]/div[2]/div/div[2]/div[1]/button"
     EMPLOYEE_ID_INPUT = "//*[@id='app']/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[2]/div/div[2]/input"
-    SEARCH_EMPLOYEE_BUTTON = "//*[@id='app']/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[2]/button[2]"
+    SEARCH_EMPLOYEE_BUTTON = "//button[@data-v-10d463b7][text()=' Search ']"
     RECORDS_TABLE_CARD_LOCATOR = "//div[@class='oxd-table-card']"
     CARD_ID_TITLE = "//*[@id='app']/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div/div/div[2]/div"
     CARD_DELETE_BUTTON = "//*[@id='app']/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div/div/div[9]/div/button[2]"
     CARD_DELETE_CONFIRMATION_BUTTON = "//*[@id='app']/div[3]/div/div/div/div[3]/button[2]"
     DELETING_SUCCESS_TITLE = "//p[@data-v-7b563373]/text()[. ='Successfully Deleted']"
     EMPLOYEE_INFORMATION_CARET = "//*[@id='app']/div[1]/div[2]/div[2]/div/div[1]/div[1]/div[2]/div[3]/button/i"
+    RECORDS_AMOUNT_TITLE = "//*[@id='app']/div[1]/div[2]/div[2]/div/div[2]/div[2]/div/span"
 
     def __init__(self, page: Page):
         super().__init__(page)
@@ -36,11 +37,10 @@ class PimModulePage(BasePage):
         self.check_that_record_is_single()
         self.should_have_text(self.CARD_ID_TITLE, employee_id)
 
-    def delete_user_found_by_id(self):
-        self.check_that_record_is_single()
+    def delete_user_after_searching(self):
         self.click(self.CARD_DELETE_BUTTON)
         self.click(self.CARD_DELETE_CONFIRMATION_BUTTON)
-        self.is_element_present(self.DELETING_SUCCESS_TITLE)
+        self.should_have_text(self.RECORDS_AMOUNT_TITLE, "No Records Found")
 
 
 
