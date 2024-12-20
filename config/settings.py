@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 ADMIN_USERNAME = "Admin"
 ADMIN_PASSWORD = "admin123"
 
-FIRST_NAME = "Chupapi"
+FIRST_NAME = "RemoteChupapi"
 MIDDLE_NAME = "GamnoMiddleName"
 LAST_NAME = "GamnoLastName"
 EMPLOYEE_ID = "1489"
