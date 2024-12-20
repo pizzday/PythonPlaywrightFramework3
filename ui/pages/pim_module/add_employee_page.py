@@ -20,6 +20,7 @@ class AddEmployeePage(BasePage):
     PASSWORD1_INPUT = "//*[@id='app']/div[1]/div[2]/div[2]/div/div/form/div[1]/div[2]/div[4]/div/div[1]/div/div[2]/input"
     PASSWORD2_INPUT = "//*[@id='app']/div[1]/div[2]/div[2]/div/div/form/div[1]/div[2]/div[4]/div/div[2]/div/div[2]/input"
     SAVE_BUTTON = "//*[@id='app']/div[1]/div[2]/div[2]/div/div/form/div[2]/button[2]"
+    INPUT_ERROR_TITLES = "//span[@class='oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message']"
 
     def __init__(self, page: Page):
         super().__init__(page)
@@ -50,7 +51,7 @@ class AddEmployeePage(BasePage):
             self.click(self.DETAILS_SWITCH)
             self.fill(self.USERNAME_INPUT, username)
             if status is not "Enabled":
-                self.click(self.DISABLED_STATUS_CHECKBOX)
+                self.check(self.DISABLED_STATUS_CHECKBOX, force=True)
             self.fill(self.PASSWORD1_INPUT, password1)
             self.fill(self.PASSWORD2_INPUT, password2)
 

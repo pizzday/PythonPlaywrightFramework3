@@ -12,8 +12,8 @@ class BasePage:
         self.page.click(locator)
 
     @allure.step('Check checkbox locator - {locator}')
-    def check(self, locator: str):
-        self.page.check(locator)
+    def check(self, locator: str, force: bool):
+        self.page.check(locator, force=force)
 
     @allure.step('Uncheck checkbox locator - {locator}')
     def uncheck(self, locator: str):

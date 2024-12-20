@@ -49,16 +49,18 @@ def admin_login(page):
 def created_test_user_admin(page):
     add_employee_page = AddEmployeePage(page)
     add_employee_page.go_to_url(PIM_ADD_EMPLOYEE_URL)
-    add_employee_page.add_employee(FIRST_NAME,
-                                   MIDDLE_NAME,
-                                   LAST_NAME,
-                                   EMPLOYEE_ID,
-                                   TEST_IMAGE_PATH,
-                                   True,
-                                   USERNAME,
-                                   PASSWORD,
-                                   PASSWORD,
-                                   "Enabled")
+    add_employee_page.add_employee(
+        FIRST_NAME,
+        MIDDLE_NAME,
+        LAST_NAME,
+        EMPLOYEE_ID,
+        TEST_IMAGE_PATH,
+        True,
+        USERNAME,
+        PASSWORD,
+        PASSWORD,
+        "Enabled"
+    )
     add_employee_page.compare_url_to(re.compile(
         r"https://opensource-demo\.orangehrmlive\.com/web/index\.php/pim/viewPersonalDetails/empNumber/.*"))
     personal_details_page = PersonalDetailsPage(page)
@@ -71,14 +73,15 @@ def created_test_user_admin(page):
 
 @pytest.fixture(scope="function")
 def created_test_user_notadmin(page):
-
     add_employee_page = AddEmployeePage(page)
     add_employee_page.go_to_url(PIM_ADD_EMPLOYEE_URL)
-    add_employee_page.add_employee(FIRST_NAME,
-                                   MIDDLE_NAME,
-                                   LAST_NAME,
-                                   EMPLOYEE_ID,
-                                   TEST_IMAGE_PATH)
+    add_employee_page.add_employee(
+        FIRST_NAME,
+        MIDDLE_NAME,
+        LAST_NAME,
+        EMPLOYEE_ID,
+        TEST_IMAGE_PATH
+    )
     add_employee_page.compare_url_to(re.compile(
         r"https://opensource-demo\.orangehrmlive\.com/web/index\.php/pim/viewPersonalDetails/empNumber/.*"))
     personal_details_page = PersonalDetailsPage(page)
